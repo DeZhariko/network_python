@@ -15,6 +15,7 @@ multiprocessing.Pool.
 
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import Pool
+from multiprocessing_worker import heavy_compute_worker
 # ═══════════════════════════════════════════════════════════
 # ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ — не меняйте их
 # ═══════════════════════════════════════════════════════════
@@ -66,7 +67,7 @@ def compute_parallel_pool(numbers: list[int], processes: int = 4) -> list[int]:
         - Результаты в порядке numbers
     """
     with Pool(processes) as pool:
-        return pool.map(heavy_compute, numbers)
+        return pool.map(heavy_compute_worker, numbers)
 
 
 # ═══════════════════════════════════════════════════════════
